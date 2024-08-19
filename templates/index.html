@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Display</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='theme.css') }}">
+</head>
+
+<body>
+    <h2>Hello, Li Wen Cui!</h2>
+    <img src="{{ url_for('static', filename='Screenshot 2024-08-18 200233.jpg') }}" alt="my lover" style="max-width: 300px; display: block; margin: 0 auto;">
+    
+    <h2>Gluten-Free Recipes</h2>
+    <div id="recipes">
+        <!-- Loop through the recipes passed from the Flask backend -->
+        {% for recipe in recipes %}
+        <div class="recipe">
+            <h3>{{ recipe.title }}</h3>
+            <img src="https://img.spoonacular.com/recipes/{{ recipe.image }}" alt="{{ recipe.title }}">
+            <p><strong>Ready in:</strong> {{ recipe.readyInMinutes }} minutes</p>
+            <p><strong>Servings:</strong> {{ recipe.servings }}</p>
+            <p><a href="{{ recipe.sourceUrl }}" target="_blank">View Recipe</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
